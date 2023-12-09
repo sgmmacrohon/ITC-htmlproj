@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>no tax evasion</title>
+    </head>
+    <body> 
+        <h1>Tax calculatingor</h1><br><br>
+        <label for = "income">Input your taxable income: &#8369;</label>
+        <input id = "income" type = "number" min="0"> <br><br>
+
+        <label for = "result">Your tax: &#8369;</label>
+        <output id = "result" type = "number" readonly> </output><br>
+
+        <br><br><br><a href="index.html">I want to go home</a>
+        <script>
+            document.getElementById("income").addEventListener("keyup", 
+            ()=>{
+                var income, result;
+                income = document.getElementById("income").value*1;
+                //console.log("pass");
+
+                if(income > 8000000){
+                    result = 2410000 + ((income - 8000000)*0.35);
+                    result = result.toLocaleString('en-US'); 
+                    document.getElementById("result").innerHTML = result;
+                }
+
+                else if(income <= 8000000 && income > 2000000){
+                    result = 490000 + ((income - 2000000)*0.32);
+                    result = result.toLocaleString('en-US'); 
+                    document.getElementById("result").innerHTML = result;
+                }
+
+                else if(income <= 2000000 && income > 800000){
+                    result = 130000 + ((income - 800000)*0.30);
+                    result = result.toLocaleString('en-US'); 
+                    document.getElementById("result").innerHTML = result;
+                }
+
+                else if(income <= 800000 && income > 400000){
+                    result = 30000 + ((income - 400000)*0.25);
+                    result = result.toLocaleString('en-US'); 
+                    document.getElementById("result").innerHTML = result;
+                }
+
+                else if(income <= 400000 && income > 250000){
+                    result = (income - 250000)*0.20;
+                    result = result.toLocaleString('en-US'); 
+                    document.getElementById("result").innerHTML = result;
+                }
+
+                else {
+                    result = 0;
+                    result = result.toLocaleString('en-US'); 
+                    document.getElementById("result").innerHTML = result;
+                }
+                //console.log("passed");
+            });
+
+        </script>
+    </body>
+</html>
