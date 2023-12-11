@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>conversion technology</title>
-        <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+        <title>Conversion</title>
+        <link href="https://fonts.googleapis.com/css?family=Borel|Bitter" rel="stylesheet">    
     </head>
     <style>
-        h1 {color: purple;}
-        body,h1,h2,h3,h4,h5,h6 {
-        font-family: 'Libre Baskerville', serif;
-        font-weight: 300;}
-        .myDiv {
-            //border: 5px outset blue;
-            background-color: pink;    
-            text-align: center;
-            }
+        
     </style>
+    <link rel="stylesheet" href="styles.css">
     <body> 
-        <div class="myDiv">
-            <h1><b>Conversion Technology</b></h1>
-        </div>
-        <form>
-            <label for = "input">Input number: </label>
-            <input id = "input" type = "number" min="0"> <br><br>
-            <label for="convert">Select conversion:</label>
-            <select id="convert">
-                <option value="ftoc">Fahrenheit to Celsius</option>
-                <option value="ctof">Celsius to Fahrenheit</option>
-                <option value="mtof">Meters to Feet</option>
-                <option value="ftom">Feet to Meters</option>
-            </select><br><br>
-            <input type="button" value="Convert" id="submit">
-        </form><br><br>
-        <label for = "result">Result: </label>
-        <output id = "result" type = "text" readonly> </output><br>
-        <br><br><br><a href="index.html">I want to go home</a> 
+        <header>
+            <h1><b>Conversion</b></h1>
+        </header>
+        <br><br>
+        <div class = "bodyDiv">
+            <form>
+                <label for = "input">Input number: </label>
+                <input id = "input" type = "number" min="0" step = "1" style="text-align:right" size="10" required> <br><br>
+                <label for="convert">Select conversion: </label>
+                <select id="convert">
+                    <option value="ftoc">Fahrenheit to Celsius</option>
+                    <option value="ctof">Celsius to Fahrenheit</option>
+                    <option value="mtof">Meters to Feet</option>
+                    <option value="ftom">Feet to Meters</option>
+                </select><br><br>
+                <button type="button" class="learn-more" id="submit">Convert</button>
+            </form><br><br>
+            <span class = "resultSpan">
+                <!--<output id = "result" type = "text" readonly >(Result will show here)</output>-->
+                <label for="result" id="resultlabel">Result:  </label>  
+                <input id="result" name="result" type="text"  style="text-align:right" size="10" readonly> </input>
+            </span><br>
+            </div>
+        <br><br><br>
+        <footer>
+            &copy; 2023 Shawny Macrohon&emsp;&emsp;&emsp;<a href="index.html">I want to go home</a> 
+        </footer>
 
         <script>
+            const input_input=document.getElementById("input");
+                    input_input.addEventListener('change', e => {
+                    e.currentTarget.value = parseFloat(e.currentTarget.value).toFixed(0)
+            });
+
             document.getElementById("submit").addEventListener("click", 
             ()=>{
                 var input, convert;
@@ -45,19 +52,19 @@
                 switch(convert) {
                 case "ftoc":
                     result = (input-32)*5/9;
-                    document.getElementById("result").innerHTML = Math.round(result) + ' degrees Celsius';
+                    document.getElementById("result").value = Math.round(result) + ' \u00B0'+'C';
                     break;
                 case "ctof":
                     result = (input*9/5)+32;
-                    document.getElementById("result").innerHTML = Math.round(result) + ' degrees Fahrenheit';
+                    document.getElementById("result").value = Math.round(result) + ' \u00B0'+'F';
                     break;
                 case "mtof":
                     result = input*3.281;
-                    document.getElementById("result").innerHTML = result + ' feet';
+                    document.getElementById("result").value = Math.round(result) + ' feet';
                     break;
                 case "ftom":
                     result = input/3.281;
-                    document.getElementById("result").innerHTML = result + ' meters';
+                    document.getElementById("result").value = Math.round(result) + ' meters';
                     break;
                 }
             });
