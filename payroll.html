@@ -53,6 +53,7 @@
                 <label for="deduc">Deduction Amount: </label >
                 <input id="deduc" name="deduc" type="number" style="text-align:right" size="10" required></input><br><br>
                 <button id="addtotable">Add to Table</button>
+                <button id="clearvalues">Clear Values</button> 
                 <button id="btnclearcart">Clear Table</button> 
             </p></div>
 
@@ -80,7 +81,6 @@
             // global variable
             var table = [];   
 
-            //document.body.addEventListener("load", initable);
             function initable(){
                 table=[];
                 document.getElementById("items").value=table.length;
@@ -111,7 +111,6 @@
                     ln = i + 1;    
                     tbody += "<tr>"
                         +'<td>'+ln+' </td>'
-                        //+'<td>'+table[i].no+' </td>'
                         +'<td style="text-align:left">'+table[i].name+'</td>'
                         +'<td style="text-align:right">'+table[i].days+'</td>'
                         +'<td style="text-align:right">'+table[i].rate+'</td>'
@@ -141,6 +140,14 @@
                 const input_deduc=document.getElementById("deduc");
                     input_deduc.addEventListener('change', e => {
                     e.currentTarget.value = parseFloat(e.currentTarget.value).toFixed(2)
+                });
+
+                // add a click event listener to the clear values button
+                document.getElementById("clearvalues").addEventListener("click", ()=>{
+                    document.getElementById("name").value ='';
+                    document.getElementById("days").value ='';        
+                    document.getElementById("rate").value ='';
+                    document.getElementById("deduc").value ='';                    
                 });
 
                 // Add item to table
@@ -187,9 +194,7 @@
                     x=document.getElementById("delitem").value*1;
 
                     --x;
-                    if (x>=0 && x<l) { //  && confirm("Delete item "+(x+1)+"?")) {
-                    //   cart.splice(x,1);
-                    //  showcart();
+                    if (x>=0 && x<l) { 
                         document.getElementById("dlgmsg").innerHTML="Delete the item?"  
                         dlgConfirmCancel.showModal();  
                     }
