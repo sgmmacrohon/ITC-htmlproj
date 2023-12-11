@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Natural Numbers</title>
+        <link href="https://fonts.googleapis.com/css?family=Borel|Bitter" rel="stylesheet"> 
+        <style>
+        </style>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body> 
+        <header><h1>Natural Numbers</h1></header><br><br>
+        <div class="flex-container">
+            <div class = "bodyDiv" style="flex:1; margin:50px; padding:30px20px; padding-top:50px; font-size: 20px;">
+                <label for = "input">Input number: </label>
+                <input id = "input" type = "number" min="0" step="1" style = "text-align:right;" size="4">
+                <br><br><button id ="compute" class="learn-more">Compute</button>
+            </div>
+            <div class = "resultDiv" style = "margin: 50px; background-color: white; padding: 50px 200px; font-size: 20px;">
+                <p>Of the first <output id = "text" type = "text" readonly> </output> numbers:</p>
+                <label for = "factorial">Factorial: </label>
+                <input id = "factorial" type = "text" size="6" style = "text-align:right;" readonly></input><br>
+                <label for = "sum">Sum: </label>
+                <input id = "sum" type = "text" size="6" style = "text-align:right;" readonly></input><br>
+                <label for = "avg">Average: </label>
+                <input id = "avg" type = "text" size="6" style = "text-align:right;" readonly></input><br>
+            </div>
+        </div>
+            <br><br>
+
+        <footer>&copy; 2023 Shawny Macrohon&emsp;&emsp;&emsp;<a href="index.html">I want to go home</a></footer>
+
+        <script>
+            const input_input=document.getElementById("input");
+                    input_input.addEventListener('change', e => {
+                    e.currentTarget.value = parseFloat(e.currentTarget.value).toFixed(0)
+            });
+
+            document.getElementById("compute").addEventListener("click", 
+            ()=>{
+                var input, result, counter;
+                input = document.getElementById("input").value*1;
+                result = 1;
+                counter = input;
+
+                document.getElementById("text").innerHTML = input;
+                while(counter >=1){
+                    result *= counter;
+                    counter--;
+                }
+                document.getElementById("factorial").value=result.toFixed(0);
+
+                result = 0;
+                counter = 0;
+                do{
+                    result += counter;
+                    counter++;
+                } while(counter <= input);
+                document.getElementById("sum").value=result.toFixed(0);
+
+                result = 0;
+                for(counter = 0; counter <= input; counter++){
+                    result += counter;
+                }
+                result /= input;
+                document.getElementById("avg").value=result.toFixed(0);
+                //console.log("passed");
+            });
+        </script>
+    </body>
+</html>
